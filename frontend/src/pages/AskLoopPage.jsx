@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Sparkles, Send } from "lucide-react";
+import { API_URL } from "../api";
 
 function AskLoopPage() {
   const [question, setQuestion] = useState("");
@@ -17,7 +18,7 @@ function AskLoopPage() {
       setAnswer("");
 
       const response = await axios.post(
-        "http://127.0.0.1:8001/ai/ask",
+        `${API_URL}/ai/ask`,
         {
           question: question,
         },

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { API_URL } from "../api";
 
 function FeedbackPage() {
   const token = localStorage.getItem("loop_token");
@@ -22,7 +23,7 @@ function FeedbackPage() {
   const loadFeedback = async () => {
     try {
       const response = await axios.get(
-        "http://127.0.0.1:8001/feedback/",
+        `${API_URL}/feedback/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -52,7 +53,7 @@ function FeedbackPage() {
 
     try {
       await axios.post(
-        "http://127.0.0.1:8001/feedback/",
+        `${API_URL}/feedback/`,
         formData,
         {
           headers: {
@@ -99,7 +100,7 @@ function FeedbackPage() {
       setImportMessage("");
 
       const response = await axios.post(
-        "http://127.0.0.1:8001/feedback/import-csv",
+        `${API_URL}/feedback/import-csv`,
         uploadData,
         {
           headers: {

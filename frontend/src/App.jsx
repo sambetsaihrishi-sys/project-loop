@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 
 import axios from "axios";
+import { API_URL } from "./api";
 
 import "./App.css";
 import Login from "./pages/Login";
@@ -106,18 +107,18 @@ function App() {
     const loadData = async () => {
       try {
         const userResponse = await axios.get(
-          "http://127.0.0.1:8001/auth/me",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+  `${API_URL}/auth/me`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
 
         setUser(userResponse.data);
 
         const workspaceResponse = await axios.get(
-  "http://127.0.0.1:8001/workspace/me",
+  `${API_URL}/workspace/me`,
   {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -129,7 +130,7 @@ setWorkspace(workspaceResponse.data);
 
 
         const feedbackResponse = await axios.get(
-          "http://127.0.0.1:8001/feedback/",
+          `${API_URL}/feedback/`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

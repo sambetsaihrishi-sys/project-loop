@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "../api";
 
 function TeamPage() {
   const token = localStorage.getItem("loop_token");
@@ -19,7 +20,7 @@ function TeamPage() {
       const [membersResponse, workspaceResponse] =
         await Promise.all([
           axios.get(
-            "http://127.0.0.1:8001/workspace/members",
+            `${API_URL}/workspace/members`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -28,7 +29,7 @@ function TeamPage() {
           ),
 
           axios.get(
-            "http://127.0.0.1:8001/workspace/me",
+            `${API_URL}/workspace/me`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -63,7 +64,7 @@ function TeamPage() {
       setMessage("");
 
       const response = await axios.post(
-        "http://127.0.0.1:8001/workspace/members",
+        `${API_URL}/workspace/members`,
         {
           email: email.trim(),
           role: role,
